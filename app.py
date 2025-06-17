@@ -2,9 +2,11 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
 # Load model yang sudah dilatih
 model = tf.keras.models.load_model('best_model.h5')
+print("Model input shape:", model.input_shape)
 
 # Daftar kelas bunga (ganti jika berbeda)
 class_names = ['Lily', 'Lotus', 'Orchid', 'Sunflower', 'Tulip']
@@ -14,7 +16,7 @@ def preprocess_image(image):
     image = image.resize((224, 224))  # Sesuaikan dengan input model
     img_array = tf.keras.preprocessing.image.img_to_array(image)
     img_array = tf.expand_dims(img_array, 0)  # Tambahkan batch dimensi
-    img_array = img_array / 255.0  # Normalisasi piksel
+    img_array = preprocess_input(img_array)    # Preprocessing khusus MobileNetV2
     return img_array
 
 # Judul aplikasi
@@ -25,7 +27,7 @@ uploaded_file = st.file_uploader("Unggah gambar bunga (jpg/jpeg/png)...", type=[
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+    st.image(image, caption="Gambar yang diunggah", use_container_width=True)
 
     st.write("🔍 Memprediksi...")
     img = preprocess_image(image)
