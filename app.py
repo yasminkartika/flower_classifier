@@ -9,15 +9,16 @@ model = tf.keras.models.load_model('best_model.h5')
 print("Model input shape:", model.input_shape)
 
 # Daftar kelas bunga (ganti jika berbeda)
-class_names = ['Lily', 'Lotus', 'Orchid', 'Sunflower', 'Tulip']
+class_names = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip', 'lotus', 'orchid']
 
 # Fungsi untuk preprocessing gambar
 def preprocess_image(image):
-    image = image.resize((224, 224))  # Sesuaikan dengan input model
+    image = image.resize((150, 150))  # Ukuran input saat pelatihan model
     img_array = tf.keras.preprocessing.image.img_to_array(image)
-    img_array = tf.expand_dims(img_array, 0)  # Tambahkan batch dimensi
+    img_array = tf.expand_dims(img_array, 0)  # Tambahkan batch dimension
     img_array = preprocess_input(img_array)    # Preprocessing khusus MobileNetV2
     return img_array
+
 
 # Judul aplikasi
 st.title("🌸 Klasifikasi Gambar Bunga dengan CNN MobileNetV2")
@@ -32,6 +33,10 @@ if uploaded_file is not None:
     st.write("🔍 Memprediksi...")
     img = preprocess_image(image)
     prediction = model.predict(img)
+
+    st.write("Shape hasil prediksi:", prediction.shape) 
+    st.write("Isi prediksi:", prediction)
+
     predicted_class = class_names[np.argmax(prediction)]
     confidence = np.max(prediction)
 
