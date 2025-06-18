@@ -5,7 +5,7 @@ from PIL import Image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
 # Load model yang sudah dilatih
-model = tf.keras.models.load_model('best_model.h5')
+model = tf.keras.models.load_model('flower_classification_model.h5')
 print("Model input shape:", model.input_shape)
 
 # Daftar kelas bunga (ganti jika berbeda)
