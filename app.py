@@ -7,7 +7,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 # Load model yang sudah dilatih
 model = tf.keras.models.load_model('best_model.h5')
 print("Model input shape:", model.input_shape)
-
+#coba
 # Daftar kelas bunga (ganti jika berbeda)
 class_names = ['daisy', 'dandelion', 'lily', 'orchid', 'rose', 'sunflower', 'tulip']
 
