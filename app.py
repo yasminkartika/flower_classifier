@@ -9,7 +9,7 @@ model = tf.keras.models.load_model('best_model.h5')
 print("Model input shape:", model.input_shape)
 
 # Daftar kelas bunga (ganti jika berbeda)
-class_names = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip', 'lotus', 'orchid']
+class_names = ['daisy', 'dandelion', 'lily', 'orchid', 'rose', 'sunflower', 'tulip']
 
 # Fungsi untuk preprocessing gambar
 def preprocess_image(image):
