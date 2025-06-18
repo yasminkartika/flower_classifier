@@ -21,7 +21,7 @@ def preprocess_image(image):
 
 
 # Judul aplikasi
-st.title("🌸 Klasifikasi Gambar Bunga dengan CNN MobileNetV2")
+st.title("🌸 Klasifikasi Gambar Bunga")
 
 # Upload gambar
 uploaded_file = st.file_uploader("Unggah gambar bunga (jpg/jpeg/png)...", type=["jpg", "jpeg", "png"])
